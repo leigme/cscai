@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/static/img/favicon.ico">
+
+    <title>长沙菜 - {{.PagTitle}}</title>
+    <!-- 主样式文件 -->
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/manage.css">
+
+    <!-- 编辑器样式文件与字符样式文件 -->
+    <link rel="stylesheet" type="text/css" href="/static/css/editor.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/font-awesome.min.css">
+
+    <!-- 时间选择插件样式文件 -->
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap-datetimepicker.min.css">
+
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <!-- 编辑器JS文件 -->
+    <script type="text/javascript" src="/static/js/bootstrap-wysiwyg.js"></script>
+    <!-- 编辑器快捷键JS文件 -->
+    <script type="text/javascript" src="/static/js/jquery.hotkeys.js"></script>
+    <!-- 日期选择插件JS文件 -->
+    <script type="text/javascript" src="/static/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="/static/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/admin/manage">后台管理页面</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <form class="navbar-form navbar-right" action="/admin/search" method="POST">
+            <div class="form-group">
+              <input type="text" placeholder="Search..." class="form-control">
+            </div>
+            <button type="submit" class="btn btn-success">查 询</button>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">
+              添 加 内 容
+            </button>
+          </form>
+
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+    <!-- Modal -->
+    {{template "adddish" .}}
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li ><a href="#">会员管理<span class="sr-only">(current)</span></a></li>
+            <li class="active"><a href="#">菜品管理</a></li>
+            <li><a href="#">个人信息</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h2 class="sub-header">{{.SectionTitle}}</h2>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>名称</th>
+                  <th>录入时间</th>
+                  <th>修改时间</th>
+                  <th>参考价格</th>
+                  <th>点击</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+              {{range .Dishes}}
+                <tr>
+                  <td>{{.Id}}</td>
+                  <td>{{.Name}}</td>
+                  <td>{{.Entrytime}}</td>
+                  <td>{{.Modifytime}}</td>
+                  <td>{{.Price}}元</td>
+                  <td>{{.Click}}</td>
+                  <td><a type="button" class="btn btn-primary btn-xs" href="/admin/modify/{{.Id}}">修改</a> / <a type="button" class="btn btn-danger btn-xs" href="/admin/delete/{{.Id}}">删除</a></td>
+                </tr>
+                {{end}}
+              </tbody>
+            </table>
+          </div>
+        </div><!-- div main -->
+      </div>
+    </div>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+  </body>
+</html>
