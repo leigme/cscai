@@ -2,7 +2,7 @@
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <form enctype="multipart/form-data" action="/admin/controller/dish" method="POST">
+      <form enctype="multipart/form-data" action="/controller/dish" method="POST">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title" id="myModalLabel">添加菜品</h4>
@@ -52,7 +52,7 @@
             </div>
         </div>
         <div class="modal-footer">
-          <button type="submit" id="adddish" class="btn btn-primary">提 交</button>
+          <button type="submit" id="submit" class="btn btn-primary">提 交</button>
           <button type="button" class="btn btn-default" data-dismiss="modal">取 消</button>
         </div>
       </form>
@@ -68,7 +68,7 @@ $('#datetimepicker').datetimepicker({
     todayBtn:'linked',
     autoclose:'true',
 });
-$('#adddish').click(function(event) {
+$('#submit').click(function(event) {
   var content = $('#editor').html();
   $('#texteditor').val(content);
 });

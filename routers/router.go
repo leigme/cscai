@@ -10,11 +10,11 @@ func init() {
 	beego.Router("/", &controllers.MainController{})
 	//超级管理路由
 	beego.Router("/admin/controller", &controllers.ManageController{})
-	beego.Router("/admin/controller/user", &controllers.ManageController{}, "post:User")
+	beego.Router("/controller/user", &controllers.ManageController{}, "post:User")
 	//权限组管理路由
-	beego.Router("/admin/controller/group", &controllers.ManageController{}, "post:Group")
+	beego.Router("/controller/group", &controllers.ManageController{}, "post:Group")
 	//菜品管理路由
-	beego.Router("/admin/controller/dish", &controllers.ManageController{}, "post:Dish")
+	beego.Router("/controller/dish", &controllers.ManageController{}, "post:Dish")
 
 	//用户登录控制
 	beego.Router("/admin/manage", &controllers.AdminController{})

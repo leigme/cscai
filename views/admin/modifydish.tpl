@@ -1,5 +1,5 @@
 {{define "modifydish"}}
-<form enctype="multipart/form-data" action="/admin/controller/dish" method="POST"> 
+<form enctype="multipart/form-data" action="/controller/dish" method="POST"> 
   <div class="row">
     <div class="col-md-4">
         <div class="form-group">
@@ -10,8 +10,8 @@
         </div>
         <div class="form-group">
             <label for="picurl">上传图片</label>
-            <img src="">{{.Dish.Picurl}}
-            <input type="file" name="picurl">
+            <img src="{{.Dish.Picurl}}">
+            <input type="file" name="picurl" value="{{.Dish.Picurl}}">
         </div>
     </div>
     <div class="col-md-4">
@@ -40,10 +40,10 @@
         <textarea id="texteditor" name="synopsis" style="visibility:hidden"></textarea>
       </div>
       <input type="text" name="id" value="{{.Dish.Id}}" style="visibility:hidden">
-  </div>          
+  </div>
 
   <div class="next">
-    <button type="submit" id="moddish" class="btn btn-primary">提 交</button>
+    <button type="submit" id="submit" class="btn btn-primary">提 交</button>
     <a type="button" class="btn btn-default" href="/admin/manage">取 消</a>
   </div>
 </form>
@@ -55,7 +55,7 @@ $('#datetimepicker').datetimepicker({
     todayBtn:'linked',
     autoclose:'true',
 });
-$('#adddish').click(function(event) {
+$('#submit').click(function(event) {
   var content = $('#editor').html();
   $('#texteditor').val(content);
 });

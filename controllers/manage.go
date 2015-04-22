@@ -3,6 +3,7 @@ package controllers
 import (
 	"cscai/models"
 	"github.com/astaxie/beego"
+	"path"
 	"strconv"
 	"time"
 )
@@ -74,7 +75,18 @@ func (c *ManageController) Dish() {
 	name := c.Input().Get("name")
 	sprice := c.Input().Get("price")
 	price, _ := strconv.ParseInt(sprice, 10, 64)
-	picurl := c.Input().Get("picurl")
+	imageurl := beego.AppConfig.String("uploadimageurl")
+	_, fh, err := c.GetFile("picurl")
+	if err != nil {
+		beego.Error(err)
+	}
+	var picname string
+	var picurl string
+	if fh != nil {
+		picname = fh.Filename
+		picurl = path.Join(imageurl, picname)
+		err = c.SaveToFile("picurl", picurl)
+	}
 	supdatedtime := c.Input().Get("updatedtime")
 	updatedtime, _ := time.Parse("2006-01-02 15:04", supdatedtime)
 	sstatus := c.Input().Get("status")
@@ -85,6 +97,7 @@ func (c *ManageController) Dish() {
 		status = false
 	}
 	synopsis := c.Input().Get("synopsis")
+	beego.Info(synopsis)
 	dish := models.Dish{
 		Name:        name,
 		Price:       price,

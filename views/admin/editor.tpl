@@ -51,9 +51,7 @@
       </div>
     </div>
     <div id="editor">
-    
       {{.Dish.Synopsis}}
-
     </div>
   </div>
 <script>
