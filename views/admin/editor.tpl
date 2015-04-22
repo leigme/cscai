@@ -50,7 +50,11 @@
         <a class="btn" data-edit="redo" title="Redo (Ctrl/Cmd+Y)"><i class="icon-repeat"></i></a>
       </div>
     </div>
+    <div id="editor">
+    
+      {{.Dish.Synopsis}}
 
+    </div>
   </div>
 <script>
   $(function(){

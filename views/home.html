@@ -54,12 +54,32 @@
           <div class="row">
           {{range .Articles}}
             <div class="col-xs-6 col-lg-4">
-              <h2>{{.Title}}</h2>
-              <p>{{.Content}}</p>
-              <p><a class="btn btn-default" href="#" role="button">更多内容 &raquo;</a></p>
+              <h3>{{.Name}}</h3>
+              <p>更新时间：{{.Updatedtime}} 点击：{{.Click}}</p>
+              <p><img src="/uploads/images/3.jpg"></p>
+              <p><button type="button" class="btn btn-default" data-toggle="modal" data-target="#Modal{{.Id}}">详细内容 &raquo;</button></p>
             </div><!--/.col-xs-6.col-lg-4-->
+            <div class="modal fade" id="Modal{{.Id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">{{.Name}}}</h4>
+                  </div>
+                  <div class="modal-body">
+                    <p>{{str2html .Synopsis}}</p>
+                    <p>{{.Price}}元</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                  </div>
+                </div>
+              </div>
+            </div>
           {{end}}
           </div><!--/row-->
+          <hr/>
+          <a type="button" class="btn btn-default btn-lg" href="">加载更多。。。</a>
         </div><!--/.col-xs-12.col-sm-9-->
 
         <div class="col-xs-6 col-sm-3 sidebar-home" id="sidebar">

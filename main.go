@@ -1,11 +1,19 @@
 package main
 
 import (
+	"cscai/models"
 	_ "cscai/routers"
 	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/orm"
 )
 
-func main() {
-	beego.Run()
+func init() {
+	models.RegisterDB()
 }
 
+func main() {
+	orm.Debug = true
+	orm.RunSyncdb("default", false, true)
+	beego.SetStaticPath("/uploads", "uploads")
+	beego.Run()
+}

@@ -54,8 +54,6 @@
         </div><!--/.navbar-collapse -->
       </div>
     </nav>
-    <!-- Modal -->
-    {{template "adddish" .}}
 
     <div class="container-fluid">
       <div class="row">
@@ -68,34 +66,13 @@
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h2 class="sub-header">{{.SectionTitle}}</h2>
-          <div class="table-responsive">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>名称</th>
-                  <th>录入时间</th>
-                  <th>修改时间</th>
-                  <th>参考价格</th>
-                  <th>点击</th>
-                  <th>操作</th>
-                </tr>
-              </thead>
-              <tbody>
-              {{range .Dishes}}
-                <tr>
-                  <td>{{.Id}}</td>
-                  <td>{{.Name}}</td>
-                  <td>{{.Entrytime}}</td>
-                  <td>{{.Modifytime}}</td>
-                  <td>{{.Price}}元</td>
-                  <td>{{.Click}}</td>
-                  <td><a type="button" class="btn btn-primary btn-xs" href="/admin/modify/{{.Id}}">修改</a> / <a type="button" class="btn btn-danger btn-xs" href="/admin/delete/{{.Id}}">删除</a></td>
-                </tr>
-                {{end}}
-              </tbody>
-            </table>
-          </div>
+          {{if eq .Pagename "modifydish"}}
+            {{template "modifydish" .}}
+          {{else if eq .Pagename "dish"}}
+            {{template "dish" .}}
+            <!-- Modal -->
+            {{template "adddish" .}}
+          {{end}}
         </div><!-- div main -->
       </div>
     </div>

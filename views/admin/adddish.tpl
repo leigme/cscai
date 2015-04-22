@@ -2,7 +2,7 @@
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <form enctype="multipart/form-data" action="/admin/adddish" method="POST">
+      <form enctype="multipart/form-data" action="/admin/controller/dish" method="POST">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title" id="myModalLabel">添加菜品</h4>
@@ -25,7 +25,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <div class="input-group">
-                                <input type="text" class="form-control" id="datetimepicker" name="entrytime" aria-describedby="basic-addon1" readonly>
+                                <input type="text" class="form-control" id="datetimepicker" name="updatedtime" aria-describedby="basic-addon1" readonly>
                                 <span class="input-group-addon" id="basic-addon1"><i class="icon-th"></i></span>
                             </div>
                         </div>
@@ -45,7 +45,6 @@
                     <div class="col-md-8">
                       <label for="content">简 介</label>
                       {{template "editor" .}}
-                      <div id="editor"></div>
                       <textarea id="texteditor" name="synopsis" style="visibility:hidden"></textarea>
                     </div>
                 </div>
