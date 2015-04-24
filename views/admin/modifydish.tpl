@@ -10,7 +10,7 @@
         </div>
         <div class="form-group">
             <label for="picurl">上传图片</label>
-            <img src="{{.Dish.Picurl}}">
+            <img src="/{{.Dish.Picurl}}">
             <input type="file" name="picurl" value="{{.Dish.Picurl}}">
         </div>
     </div>

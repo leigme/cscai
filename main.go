@@ -14,6 +14,5 @@ func init() {
 func main() {
 	orm.Debug = true
 	orm.RunSyncdb("default", false, true)
-	beego.SetStaticPath("/uploads", "uploads")
 	beego.Run()
 }

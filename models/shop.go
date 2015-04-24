@@ -15,7 +15,8 @@ type Shop struct {
 	Address     string
 	Coordinate  string
 	Userid      int64
-	Click       int64
+	Click       int64     `orm:"index"`
+	Luad        int64     `orm:"index"`
 	Createdtime time.Time `orm:"auto_now_add;index;type(datetime)"`
 	Updatedtime time.Time `orm:"index;type(datetime)"`
 	Status      bool

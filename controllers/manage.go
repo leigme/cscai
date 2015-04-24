@@ -12,6 +12,18 @@ type ManageController struct {
 	beego.Controller
 }
 
+type User struct {
+	models.User
+}
+
+type Group struct {
+	models.Group
+}
+
+type Shop struct {
+	models.Shop
+}
+
 type Dish struct {
 	models.Dish
 	Updatedtime string

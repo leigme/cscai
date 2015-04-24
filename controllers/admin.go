@@ -17,7 +17,7 @@ func (c *AdminController) Get() {
 	} else {
 		beego.Info("登录失败！")
 	}
-	c.Data["PagTitle"] = "管理"
+	c.Data["PagTitle"] = "管 理"
 	c.Data["Pagename"] = "dish"
 	c.Data["SectionTitle"] = "菜品管理"
 	var dish models.Dish
@@ -30,7 +30,7 @@ func (c *AdminController) Get() {
 }
 
 func (c *AdminController) Signin() {
-	c.Data["PagTitle"] = "登录"
+	c.Data["PagTitle"] = "登 录"
 	c.TplNames = "admin/signin.html"
 }
 

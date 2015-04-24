@@ -10,14 +10,9 @@ type MainController struct {
 	beego.Controller
 }
 
-type Lead struct {
-	Title   string
-	Content string
-}
-
-type Article struct {
-	Title   string
-	Content string
+type Introduction struct {
+	Title    string
+	Synopsis string
 }
 
 type RightList struct {
@@ -28,21 +23,21 @@ type RightList struct {
 
 type Ajaxdish struct {
 	models.Dish
-	Createdtime string
+	Lead        string
 	Updatedtime string
 }
 
 func (c *MainController) Get() {
-	c.Data["PagTitle"] = "首页"
+	c.Data["PagTitle"] = "首 页"
 	j := 10
 
-	var lead Lead
-	lead.Title = "世界，你好！"
-	lead.Content = "长沙菜美食风味小站！"
-	c.Data["Lead"] = lead
+	var introduction Introduction
+	introduction.Title = "世界，你好！"
+	introduction.Synopsis = "长沙菜美食风味小站！"
+	c.Data["Introduction"] = introduction
 
-	articles := Getajax()
-	c.Data["Articles"] = articles
+	dishes := Getajax()
+	c.Data["Dishes"] = dishes
 
 	var rightlist RightList
 	rightlists := make(map[int]RightList)
@@ -66,13 +61,11 @@ func Getajax() map[int]Ajaxdish {
 	dishes := make([]*models.Dish, pagesize)
 	dishes, _ = dish.Get(pagesize-1, 0)
 	for i, dish := range dishes {
-		ajaxdish.Id = dish.Id
 		ajaxdish.Name = dish.Name
 		ajaxdish.Synopsis = dish.Synopsis
 		ajaxdish.Picurl = dish.Picurl
 		ajaxdish.Price = dish.Price
 		ajaxdish.Click = dish.Click
-		ajaxdish.Createdtime = dish.Createdtime.Format("2006-01-02")
 		ajaxdish.Updatedtime = dish.Updatedtime.Format("2006-01-02")
 		ajaxdishes[i] = ajaxdish
 	}

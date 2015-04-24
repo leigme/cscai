@@ -12,7 +12,8 @@ type Dish struct {
 	Picurl      string
 	Price       int64
 	Shopid      int64
-	Click       int64
+	Click       int64     `orm:"index"`
+	Luad        int64     `orm:"index"`
 	Createdtime time.Time `orm:"auto_now_add;index;type(datetime)"`
 	Updatedtime time.Time `orm:"index;type(datetime)"`
 	Status      bool
@@ -43,6 +44,22 @@ func (d *Dish) Getone(id int64) (Dish, error) {
 	return dish, err
 }
 
+func (d *Dish) Getclick(id int64) (int64, error) {
+	o := orm.NewOrm()
+	var dish Dish
+	err := o.QueryTable("dish").Filter("Id", id).One(&dish)
+	click := dish.Click
+	return click, err
+}
+
+func (d *Dish) Getluad(id int64) (int64, error) {
+	o := orm.NewOrm()
+	var dish Dish
+	err := o.QueryTable("dish").Filter("Id", id).One(&dish)
+	luad := dish.Luad
+	return luad, err
+}
+
 func (d *Dish) Add(dish Dish) error {
 	o := orm.NewOrm()
 	_, err := o.Insert(&dish)
@@ -69,6 +86,34 @@ func (d *Dish) Mod(id int64, dish Dish) error {
 		} else {
 			return err
 		}
+	}
+	return nil
+}
+
+func (d *Dish) Addclick(id int64) error {
+	o := orm.NewOrm()
+	dishid := Dish{Id: id}
+	if o.Read(&dishid) == nil {
+		dishid.Click = dishid.Click + 1
+	}
+	if _, err := o.Update(&dishid); err == nil {
+		return nil
+	} else {
+		return err
+	}
+	return nil
+}
+
+func (d *Dish) Addluad(id int64) error {
+	o := orm.NewOrm()
+	dishid := Dish{Id: id}
+	if o.Read(&dishid) == nil {
+		dishid.Luad = dishid.Luad + 1
+	}
+	if _, err := o.Update(&dishid); err == nil {
+		return nil
+	} else {
+		return err
 	}
 	return nil
 }
